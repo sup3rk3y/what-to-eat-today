@@ -16,8 +16,21 @@ export default {
   },
   data() {
     return {
-      recipes: [],
+      recipes: null,
     };
+  },
+  created() {
+    this.fetchRecipes();
+  },
+  methods: {
+    fetchRecipes() {
+      this.axios
+        .get(
+          "https://my-json-server.typicode.com/sup3rk3y/what-to-eat-today/recipes"
+        )
+        .then((response) => (this.recipes = response.data))
+        .catch((e) => console.log(e));
+    },
   },
 };
 </script>
