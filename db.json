@@ -1,0 +1,22 @@
+{
+    "recipes": [
+        {
+            "id": 1,
+            "title": "Greek Gyros",
+            "description": "Delicious :)",
+            "incredients": ["600gr pork", "vinegar"],
+            "execution": "",
+            "category": ["Greek", "pork", "meat"],
+            "rating": 5
+        },
+        {
+            "id": 2,
+            "title": "CheeseBurger",
+            "description": "WOW :O",
+            "incredients": ["350gr ground beef", "bacon"],
+            "execution": "",
+            "category": ["Fast food", "burger", "meat"],
+            "rating": 3
+        }
+    ]
+}
