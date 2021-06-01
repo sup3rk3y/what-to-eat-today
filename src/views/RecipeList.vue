@@ -1,22 +1,27 @@
 <template>
   <div class="recipes">
-    <h1>Awesome Recipes</h1>
+    <h1 class="title">Awesome Recipes</h1>
     <RecipeCard v-for="recipe in recipes" :key="recipe.id" :recipe="recipe" />
+    <spinner :loading="loading" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import RecipeCard from "@/components/RecipeCard.vue";
+import RecipeService from "@/services/RecipeService";
+import Spinner from "@/components/Spinner.vue";
 
 export default {
   name: "RecipeList",
   components: {
     RecipeCard,
+    Spinner,
   },
   data() {
     return {
       recipes: null,
+      loading: true,
     };
   },
   created() {
@@ -24,18 +29,26 @@ export default {
   },
   methods: {
     fetchRecipes() {
-      this.axios
-        .get(
-          "https://my-json-server.typicode.com/sup3rk3y/what-to-eat-today/recipes"
-        )
-        .then((response) => (this.recipes = response.data))
+      this.delay();
+      RecipeService.getRecipes()
+        .then((response) => {
+          this.loading = false;
+          this.recipes = response.data;
+        })
         .catch((e) => console.log(e));
+    },
+    async delay() {
+      await new Promise((r) => setTimeout(r, 5000));
     },
   },
 };
 </script>
 
 <style scoped>
+.title {
+  padding-bottom: 25px;
+}
+
 .recipes {
   display: flex;
   flex-direction: column;

@@ -26,4 +26,8 @@ export default {
 h4 {
   margin-bottom: 0;
 }
+
+hr {
+  border-color: #39495c;
+}
 </style>
