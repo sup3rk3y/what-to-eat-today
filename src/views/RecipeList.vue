@@ -29,16 +29,12 @@ export default {
   },
   methods: {
     fetchRecipes() {
-      this.delay();
       RecipeService.getRecipes()
         .then((response) => {
           this.loading = false;
           this.recipes = response.data;
         })
         .catch((e) => console.log(e));
-    },
-    async delay() {
-      await new Promise((r) => setTimeout(r, 5000));
     },
   },
 };
